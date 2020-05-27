@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'FlexibleTable_Example' do
+  pod 'FlexibleTable', :path => '../'
+
+  target 'FlexibleTable_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end
