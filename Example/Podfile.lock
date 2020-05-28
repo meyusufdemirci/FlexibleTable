@@ -1,0 +1,16 @@
+PODS:
+  - FlexibleTable (0.1.0)
+
+DEPENDENCIES:
+  - FlexibleTable (from `../`)
+
+EXTERNAL SOURCES:
+  FlexibleTable:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FlexibleTable: 90840aa695194aff33760a730bbd156ebb757f7d
+
+PODFILE CHECKSUM: c9aa1a2b6826c53947feb10acec506328bb49de2
+
+COCOAPODS: 1.9.2

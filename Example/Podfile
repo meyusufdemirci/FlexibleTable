@@ -6,6 +6,5 @@ target 'FlexibleTable_Example' do
   target 'FlexibleTable_Tests' do
     inherit! :search_paths
 
-    pod 'FBSnapshotTestCase' , '~> 2.1.4'
   end
 end
