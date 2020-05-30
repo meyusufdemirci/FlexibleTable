@@ -5,9 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/FlexibleTable.svg?style=flat)](https://cocoapods.org/pods/FlexibleTable)
 [![Platform](https://img.shields.io/cocoapods/p/FlexibleTable.svg?style=flat)](https://cocoapods.org/pods/FlexibleTable)
 
-## Example
+FlexibleTable written in Swift. You can add customizable header view to table easily.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+![alt tag](https://media.giphy.com/media/dalGBGZ9TJRm6ZyQWr/giphy.gif)
 
 ## Requirements
 
@@ -22,6 +22,14 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'FlexibleTable'
+```
+
+## Usage
+
+```ruby
+tableView.stickyHeader.view = YourUIView()
+tableView.stickyHeader.height = 300
+tableView.stickyHeader.minimumHeight = 100
 ```
 
 ## Author
