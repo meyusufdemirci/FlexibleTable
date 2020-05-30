@@ -9,7 +9,6 @@ The FlexibleTable is a stretchable header view for UITableView. Can be configure
                        DESC
 
   s.homepage         = 'https://github.com/demirciy/FlexibleTable'
-  s.screenshots      = 'https://media.giphy.com/media/dalGBGZ9TJRm6ZyQWr/giphy.gif'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Yusuf Demirci' => 'demirciy94@gmail.com' }
   s.source           = { :git => 'https://github.com/demirciy/FlexibleTable.git', :tag => s.version.to_s }
