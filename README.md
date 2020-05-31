@@ -7,8 +7,6 @@
 
 FlexibleTable written in Swift. You can add customizable header view to table easily.
 
-![alt tag](https://media.giphy.com/media/dalGBGZ9TJRm6ZyQWr/giphy.gif)
-
 ## Requirements
 
 - iOS 10.0+
@@ -31,11 +29,29 @@ tableView.stickyHeader.view = YourUIView()
 tableView.stickyHeader.height = 300
 tableView.stickyHeader.minimumHeight = 100
 ```
+![alt tag](https://media.giphy.com/media/lnaItG2BLVb7GHqcb6/giphy.gif)
+
+If you want to add default mask
+```ruby
+tableView.stickyHeader.maskColor = UIColor.black.withAlphaComponent(0.7)
+```
+![alt tag](https://media.giphy.com/media/hQho07szThczKB1AgC/giphy.gif)
+
+If you want to add your custom mask view instead of maskColor
+```ruby
+tableView.stickyHeader.maskView = YourMaskView()
+```
+
+FTDelegate Protocol
+```ruby
+func didMaskViewAlphaChange(alpha: CGFloat)
+```
+
+FTDelegate Closure
+```ruby
+var didMaskViewAlphaChange: ((CGFloat) -> Void)?
+```
 
 ## Author
 
 Yusuf Demirci, demirciy94@gmail.com
-
-## License
-
-FlexibleTable is available under the MIT license. See the LICENSE file for more info.
