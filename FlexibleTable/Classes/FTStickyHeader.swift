@@ -7,8 +7,8 @@
 
 public class FTStickyHeader: NSObject {
     
-    // MARK: - Properties
-    // The view attached to the sticky header.
+    // MARK: - Public Properties
+    /// The view attached to the sticky header
     public var view: UIView? {
         set {
             guard newValue != _view else { return }
@@ -18,7 +18,7 @@ public class FTStickyHeader: NSObject {
             return _view
         }
     }
-    // The height of the header.
+    /// The height of the header
     public var height: CGFloat {
         set {
             guard newValue != _height else { return }
@@ -33,22 +33,49 @@ public class FTStickyHeader: NSObject {
             layoutContentView()
         } get { return _height }
     }
-    // The minimum height of the header.
+    /// The minimum height of the header
     public var minimumHeight: CGFloat {
         set {
             _minimumHeight = newValue
             layoutContentView()
         } get { return _minimumHeight }
     }
-    // The view containing the provided header
+    /// The mask color will show when header reaches the minimum height
+    public var maskColor: UIColor? {
+        didSet {
+            setDefaultMaskView()
+        }
+    }
+    /// The custom mask
+    public var maskView: UIView? {
+        didSet {
+            setCustomMaskView()
+        }
+    }
+    /// The change speed of mask appearance&disappearance
+    /// - Attention: _maskChangeSpeed
+    /// - Note: Higher value provides soft transition
+    /// - Requires: maskChangeSpeed > 0
+    public var maskChangeSpeed: CGFloat {
+        set {
+            _maskChangeSpeed = newValue
+        } get { return _maskChangeSpeed }
+    }
+    /// The start offset of mask
+    /// - Attention: _maskChangeStartOffset
+    /// - Note: Higher value provides to start the change earlier
+    /// - Requires: height > maskChangeStartOffset > minimumHeight
+    public var maskChangeStartOffset: CGFloat?
+    public var delegate: FTDelegate?
+    public var didMaskViewAlphaChange: ((CGFloat) -> Void)?
+    
+    // MARK: - Private Properties
     private(set) lazy var contentView: FTStickyHeaderView = {
         let view: FTStickyHeaderView = FTStickyHeaderView()
         view.parent = self
         view.clipsToBounds = true
         return view
     }()
-    private weak var _scrollView: UIScrollView?
-    // The `UIScrollView` attached to the sticky header
     weak var scrollView: UIScrollView? {
         set {
             if _scrollView != newValue {
@@ -65,9 +92,16 @@ public class FTStickyHeader: NSObject {
             return _scrollView
         }
     }
+    private weak var _scrollView: UIScrollView?
     private var _view: UIView?
     private var _height: CGFloat = 0
     private var _minimumHeight: CGFloat = 0
+    private var _maskView: UIView = {
+        let view: UIView = UIView()
+        view.alpha = 0
+        return view
+    }()
+    private var _maskChangeSpeed: CGFloat = 100
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let path = keyPath, context == &FTStickyHeaderView.KVOContext && path == "contentOffset" {
@@ -109,9 +143,9 @@ private extension FTStickyHeader {
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v]|", options: [], metrics: nil, views: ["v": view]))
         
-        contentView.addConstraint(NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0))
+        contentView.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: contentView, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0))
         
-        contentView.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+        contentView.addConstraint(NSLayoutConstraint(item: view, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: height))
         
     }
     
@@ -127,6 +161,44 @@ private extension FTStickyHeader {
             relativeYOffset = -height - compensation
         }
         
+        let _maskChangeStartOffset: CGFloat = maskChangeStartOffset ?? height / 1.5
+        
+        var maskViewAlpha: CGFloat = min(1.0, (scrollView.contentOffset.y + _maskChangeStartOffset) / _maskChangeSpeed)
+        if maskViewAlpha < 0 {
+            maskViewAlpha = 0
+        }
+        
+        if maskView != nil {
+            maskView?.alpha = maskViewAlpha
+            
+            delegate?.didMaskViewAlphaChange(alpha: maskViewAlpha)
+            didMaskViewAlphaChange?(maskViewAlpha)
+        } else if maskColor != nil {
+            _maskView.alpha = maskViewAlpha
+            
+            delegate?.didMaskViewAlphaChange(alpha: maskViewAlpha)
+            didMaskViewAlphaChange?(maskViewAlpha)
+        }
+        
         contentView.frame = CGRect(x: 0, y: relativeYOffset, width: scrollView.frame.size.width, height: height)
+    }
+    
+    func setDefaultMaskView() {
+        guard let maskColor = maskColor else { return }
+        
+        _maskView.backgroundColor = maskColor
+        
+        contentView.addSubview(_maskView)
+        
+        _maskView.anchor(left: contentView.leftAnchor, paddingLeft: 0, top: contentView.topAnchor, paddingTop: 0, right: contentView.rightAnchor, paddingRight: 0, bottom: contentView.bottomAnchor, paddingBottom: 0)
+    }
+    
+    func setCustomMaskView() {
+        guard let maskView = maskView else { return }
+        maskView.alpha = 0
+        
+        contentView.addSubview(maskView)
+        
+        maskView.anchor(left: contentView.leftAnchor, paddingLeft: 0, top: contentView.topAnchor, paddingTop: 0, right: contentView.rightAnchor, paddingRight: 0, bottom: contentView.bottomAnchor, paddingBottom: 0)
     }
 }

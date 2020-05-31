@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		1E7E2DC5D6B0DE91937ACB91 /* Pods_FlexibleTable_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlexibleTable_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28378C62777301B32883C965 /* FlexibleTable.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FlexibleTable.podspec; path = ../FlexibleTable.podspec; sourceTree = "<group>"; };
+		28378C62777301B32883C965 /* FlexibleTable.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FlexibleTable.podspec; path = ../FlexibleTable.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2CBCA6EB543EA6CC55D18C1D /* Pods-FlexibleTable_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlexibleTable_Tests.debug.xcconfig"; path = "Target Support Files/Pods-FlexibleTable_Tests/Pods-FlexibleTable_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* FlexibleTable_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlexibleTable_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };

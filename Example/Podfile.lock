@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FlexibleTable: 90840aa695194aff33760a730bbd156ebb757f7d
+  FlexibleTable: 56bf219802fb328d8ac0a3ddce74b7fc20955c0e
 
 PODFILE CHECKSUM: c9aa1a2b6826c53947feb10acec506328bb49de2
 
