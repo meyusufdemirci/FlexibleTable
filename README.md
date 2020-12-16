@@ -1,9 +1,9 @@
 # FlexibleTable
 
-[![CI Status](https://travis-ci.com/demirciy/FlexibleTable.svg?style=flat)](https://travis-ci.com/demirciy/FlexibleTable)
-[![Version](https://img.shields.io/cocoapods/v/FlexibleTable.svg?style=flat)](https://cocoapods.org/pods/FlexibleTable)
-[![License](https://img.shields.io/cocoapods/l/FlexibleTable.svg?style=flat)](https://cocoapods.org/pods/FlexibleTable)
-[![Platform](https://img.shields.io/cocoapods/p/FlexibleTable.svg?style=flat)](https://cocoapods.org/pods/FlexibleTable)
+[![CI Status](https://travis-ci.com/demirciy/FlexibleTable.svg)](https://travis-ci.com/demirciy/FlexibleTable)
+[![Version](https://img.shields.io/cocoapods/v/FlexibleTable.svg)](https://cocoapods.org/pods/FlexibleTable)
+[![License](https://img.shields.io/cocoapods/l/FlexibleTable.svg])](https://cocoapods.org/pods/FlexibleTable)
+[![Platform](https://img.shields.io/cocoapods/p/FlexibleTable.svg)](https://cocoapods.org/pods/FlexibleTable)
 
 FlexibleTable written in Swift. You can add customizable header view to table easily.
 
